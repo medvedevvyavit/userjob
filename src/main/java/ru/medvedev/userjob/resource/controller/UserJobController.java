@@ -21,7 +21,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 public class UserJobController {
 
-    public static final String BASE_PATH = "api/v1/userjob";
+    public static final String BASE_PATH = "/api/v1/userjob";
 
     private final UserJobService service;
 
