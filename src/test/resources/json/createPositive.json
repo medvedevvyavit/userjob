@@ -1,0 +1,21 @@
+{
+  "user": {
+    "familyName": "Александрова",
+    "middleName": "Олеговна",
+    "firstName": "Наталья",
+    "birthday": "1980-04-22",
+    "gender": "FEMALE",
+    "age": 41,
+    "description": "Любит заниматься йогой",
+    "isBlocked": false
+  },
+  "company": {
+    "companyName": "VWX Corporation",
+    "description": "Компания, занимающаяся производством бытовой техники",
+    "isActivity": true
+  },
+  "userJobInfo": {
+    "description": "Бухгалтер",
+    "isActivity": true
+  }
+}
