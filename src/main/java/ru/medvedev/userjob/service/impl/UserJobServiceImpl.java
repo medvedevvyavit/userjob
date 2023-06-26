@@ -110,7 +110,6 @@ public class UserJobServiceImpl implements UserJobService {
         } else if (ofNullable(userJobInfo.getId()).isEmpty()) {
             UserJobInfo originUserJobInfo = userJobInfoRepository.getUserJobInfoByUserIdAndCompanyId(user.getId(), company.getId()).orElse(null);
             if (ofNullable(originUserJobInfo).isPresent()) {
-                userJobInfo.setId(originUserJobInfo.getId());
                 userJobInfo.setUser(user);
                 userJobInfo.setCompany(company);
                 fillFieldsUserJobInfo(userJobInfo, originUserJobInfo);
@@ -162,6 +161,7 @@ public class UserJobServiceImpl implements UserJobService {
     }
 
     private void fillFieldsUserJobInfo(UserJobInfo updateUserJobInfo, UserJobInfo originUserJobInfo) {
+        if (updateUserJobInfo.getId() == null) updateUserJobInfo.setId(originUserJobInfo.getId());
         if (updateUserJobInfo.getIsActivity() == null) updateUserJobInfo.setIsActivity(originUserJobInfo.getIsActivity());
         if (updateUserJobInfo.getDescription() == null) updateUserJobInfo.setDescription(originUserJobInfo.getDescription());
     }
