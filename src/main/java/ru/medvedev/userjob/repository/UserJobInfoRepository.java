@@ -7,5 +7,4 @@ import java.util.Optional;
 
 public interface UserJobInfoRepository extends JpaRepository<UserJobInfo, Long> {
     Optional<UserJobInfo> getUserJobInfoByUserIdAndCompanyId(Long userId, Long companyId);
-    Optional<Long> findIdByUserIdAndCompanyId(Long userId, Long companyId);
 }
