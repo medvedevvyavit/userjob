@@ -1,0 +1,23 @@
+{
+  "user": {
+    "id": 2,
+    "familyName": "Петров",
+    "middleName": "Алексеевич",
+    "firstName": "Алексей",
+    "birthday": "1985-06-25",
+    "gender": "MALE",
+    "age": 36,
+    "description": "Любит спорт, особенно футбол",
+    "isBlocked": false
+  },
+  "company": {
+    "id": 2,
+    "companyName": "DEF Corporation",
+    "description": "Производитель мобильных устройств",
+    "isActivity": true
+  },
+  "userJobInfo": {
+    "description": "Менеджер по продажам",
+    "isActivity": true
+  }
+}

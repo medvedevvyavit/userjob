@@ -1,0 +1,14 @@
+{
+  "user": {
+    "id": 2,
+    "birthday": "1985-06-26",
+    "isBlocked": true
+  },
+  "company": {
+    "id": 4,
+    "description": "Производитель"
+  },
+  "userJobInfo": {
+    "description": "Менеджер"
+  }
+}

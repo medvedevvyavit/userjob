@@ -40,6 +40,6 @@ public class UserJobController {
     @GetMapping("get-userjob")
     public ResponseEntity<UserJobResponse> getUserJob(@Param("user") Long userId,
                                                       @Param("company") Long companyId) {
-        return new ResponseEntity<>(service.getUserJob(userId, companyId), OK);
+        return ResponseEntity.ok(service.getUserJob(userId, companyId));
     }
 }

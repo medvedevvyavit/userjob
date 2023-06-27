@@ -52,9 +52,9 @@ public class UserJobControllerTest {
     }
 
     @Test
-    public void createUserJobTest() throws Exception {
+    public void createUserJobPositiveScenarioTest() throws Exception {
         String jsonBody = objectMapper.writeValueAsString(objectMapper
-                .readValue(new File("src/test/resources/json/createPositive.json"), Object.class));
+                .readValue(new File("src/test/resources/json/createPositiveRequest.json"), Object.class));
         mockMvc.perform(post(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/create-userjob")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonBody))
@@ -62,9 +62,19 @@ public class UserJobControllerTest {
     }
 
     @Test
-    public void updateUserJobTest() throws Exception {
+    public void createUserJobNegativeScenarioTest() throws Exception {
         String jsonBody = objectMapper.writeValueAsString(objectMapper
-                .readValue(new File("src/test/resources/json/updatePositive.json"), Object.class));
+                .readValue(new File("src/test/resources/json/createNegativeRequest.json"), Object.class));
+        mockMvc.perform(post(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/create-userjob")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonBody))
+                .andExpect(status().isConflict());
+    }
+
+    @Test
+    public void updateUserJobPositiveScenarioTest() throws Exception {
+        String jsonBody = objectMapper.writeValueAsString(objectMapper
+                .readValue(new File("src/test/resources/json/updatePositiveRequest.json"), Object.class));
         mockMvc.perform(patch(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/update-userjob")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonBody))
@@ -72,9 +82,50 @@ public class UserJobControllerTest {
     }
 
     @Test
+    public void updateUserJobNegativeScenarioTest() throws Exception {
+        String jsonBody = objectMapper.writeValueAsString(objectMapper
+                .readValue(new File("src/test/resources/json/updateNegativeRequest.json"), Object.class));
+        mockMvc.perform(patch(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/update-userjob")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonBody))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void getUserJobTest() throws Exception {
         mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
                 .queryParam("userId", "3"))
                 .andExpect(status().isOk());
+
+        mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
+                        .queryParam("companyId", "3"))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
+                        .queryParam("userId", "2")
+                        .queryParam("companyId", "2"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getUserJobMissingQueryTest() throws Exception {
+        mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void getUserJobNotFoundTest() throws Exception {
+        mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
+                        .queryParam("userId", "4"))
+                .andExpect(status().isNotFound());
+
+        mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
+                        .queryParam("companyId", "4"))
+                .andExpect(status().isNotFound());
+
+        mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
+                        .queryParam("userId", "4")
+                        .queryParam("companyId", "4"))
+                .andExpect(status().isNotFound());
     }
 }
