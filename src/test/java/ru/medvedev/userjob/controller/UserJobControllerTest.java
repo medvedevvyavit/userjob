@@ -94,16 +94,16 @@ public class UserJobControllerTest {
     @Test
     public void getUserJobTest() throws Exception {
         mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
-                .queryParam("userId", "3"))
+                .queryParam("user", "3"))
                 .andExpect(status().isOk());
 
         mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
-                        .queryParam("companyId", "3"))
+                        .queryParam("company", "3"))
                 .andExpect(status().isOk());
 
         mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
-                        .queryParam("userId", "2")
-                        .queryParam("companyId", "2"))
+                        .queryParam("user", "2")
+                        .queryParam("company", "2"))
                 .andExpect(status().isOk());
     }
 
@@ -116,16 +116,16 @@ public class UserJobControllerTest {
     @Test
     public void getUserJobNotFoundTest() throws Exception {
         mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
-                        .queryParam("userId", "4"))
+                        .queryParam("user", "4"))
                 .andExpect(status().isNotFound());
 
         mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
-                        .queryParam("companyId", "4"))
+                        .queryParam("company", "4"))
                 .andExpect(status().isNotFound());
 
         mockMvc.perform(get(uriTemplateHandler.getRootUri() + UserJobController.BASE_PATH + "/get-userjob")
-                        .queryParam("userId", "4")
-                        .queryParam("companyId", "4"))
+                        .queryParam("user", "4")
+                        .queryParam("company", "4"))
                 .andExpect(status().isNotFound());
     }
 }

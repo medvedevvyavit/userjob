@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.medvedev.userjob.resource.request.UserJobRequest;
 import ru.medvedev.userjob.resource.response.UserJobResponse;
@@ -38,8 +39,8 @@ public class UserJobController {
     }
 
     @GetMapping("get-userjob")
-    public ResponseEntity<UserJobResponse> getUserJob(@Param("user") Long userId,
-                                                      @Param("company") Long companyId) {
+    public ResponseEntity<UserJobResponse> getUserJob(@RequestParam(name = "user", required = false) Long userId,
+                                                      @RequestParam(name = "company", required = false) Long companyId) {
         return ResponseEntity.ok(service.getUserJob(userId, companyId));
     }
 }
