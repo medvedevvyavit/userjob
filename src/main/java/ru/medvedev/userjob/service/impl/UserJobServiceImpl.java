@@ -44,6 +44,10 @@ public class UserJobServiceImpl implements UserJobService {
     private final CompanyMapper companyMapper;
     private final UserJobInfoMapper userJobInfoMapper;
 
+    private void doWork() {
+
+    }
+
     @Override
     public void createUserJob(UserJobRequest request) {
         User user;
